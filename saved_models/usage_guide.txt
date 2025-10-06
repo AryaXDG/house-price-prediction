@@ -1,0 +1,51 @@
+
+# House Price Prediction Model - Usage Guide
+
+## Quick Start
+1. Load the model and preprocessing components
+2. Prepare your input features
+3. Make predictions
+
+## Example Usage:
+```python
+# Load required libraries
+import pickle
+import numpy as np
+
+# Load model and preprocessing components
+with open('saved_models/random_forest_model.pkl', 'rb') as f:
+    model = pickle.load(f)
+
+with open('saved_models/scaler.pkl', 'rb') as f:
+    scaler = pickle.load(f)
+
+with open('saved_models/imputer.pkl', 'rb') as f:
+    imputer = pickle.load(f)
+
+# Use the predict_house_price function for easy predictions
+predicted_price = predict_house_price(
+    area=2000, bedrooms=3, bathrooms=2, floors=2,
+    year_built=2000, location='Suburb', condition='Good', garage='Yes'
+)
+print(f"Predicted Price: ${predicted_price:,.0f}")
+```
+
+## Model Performance:
+- Best Model: Random Forest
+- R² Score: 0.8982
+- Mean Absolute Error: $231,574
+
+## Features Used:
+- Area
+- Bedrooms
+- Bathrooms
+- Floors
+- House_Age
+- Location_encoded
+- Condition_encoded
+- Garage_encoded
+
+## Categorical Encodings:
+- Location: ['Downtown', 'Rural', 'Suburban', 'Urban']
+- Condition: ['Excellent', 'Fair', 'Good', 'Poor']  
+- Garage: ['Attached', 'Detached', 'No', 'Yes']
